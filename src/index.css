@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Modern Web Guidance: validate-input-after-interaction (:user-invalid & :user-valid + fallbacks) */
+.nq-field .hint,
+.nq-field .rules-list {
+  color: #5f6368;
+  font-size: 0.8125rem;
+  margin-bottom: 0.35rem;
+}
+
+.nq-field .error-msg {
+  display: none;
+  color: #d93025;
+  font-size: 0.8125rem;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+.nq-field input:user-invalid,
+.nq-field input.user-invalid-fallback,
+.nq-field select:user-invalid,
+.nq-field textarea:user-invalid {
+  border-color: #d93025 !important;
+  background-color: #fce8e6 !important;
+}
+
+.nq-field input:user-invalid ~ .error-msg,
+.nq-field input.user-invalid-fallback ~ .error-msg {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nq-field:has(input:user-invalid) .rules-list,
+.nq-field:has(input.user-invalid-fallback) .rules-list {
+  color: #d93025;
+  font-weight: 600;
+}
+
+.nq-field input:user-valid,
+.nq-field input.user-valid-fallback {
+  border-color: #188038 !important;
+}
+
+.nq-field:has(input:user-valid) .rules-list {
+  display: none;
+}
+
+/* Modern Web Guidance: light-dismiss-a-dialog */
+dialog.nq-dialog {
+  border: none;
+  padding: 0;
+  border-radius: 1rem;
+  max-width: 92vw;
+  max-height: 90vh;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+dialog.nq-dialog::backdrop {
+  background-color: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+/* Leaflet map container fixes */
+.leaflet-container {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  z-index: 10 !important;
+}
