@@ -1,5 +1,9 @@
 # Nest Quest — Verified Smart Property Marketplace (Bangladesh)
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel%20Production-16a34a?style=for-the-badge&logo=vercel&logoColor=white)](https://nestquest-five.vercel.app/)
+
+🌐 **Live URL**: [https://nestquest-five.vercel.app/](https://nestquest-five.vercel.app/)
+
 **Nest Quest** is a comprehensive web-based real estate platform tailored for Bangladesh's property ecosystem. It solves critical market pain points—fake listings, opaque pricing, land record (*Khatian / Mutation / Namjari*) confusion, and unverified intermediaries—by combining verified property data, interactive GIS smart maps, AI price estimation, legal support, fraud detection, and group buying (co-ownership) in one unified platform.
 
 ---
