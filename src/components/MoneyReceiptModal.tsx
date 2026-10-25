@@ -39,7 +39,7 @@ export const MoneyReceiptModal: React.FC<MoneyReceiptModalProps> = ({
 
   const [receiptNumber, setReceiptNumber] = useState(defaultReceiptNo);
   const [issuedBy, setIssuedBy] = useState(
-    existingReceipt?.issuedBy || 'Md Nur Uddin Tamim (Nest Quest Lead)'
+    existingReceipt?.issuedBy || 'Mohammad Rahman (Nest Quest Admin)'
   );
   const [remarks, setRemarks] = useState(
     existingReceipt?.remarks ||

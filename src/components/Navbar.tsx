@@ -52,7 +52,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'lawyers', label: 'Lawyers' },
     { id: 'advisors', label: 'Advisors' },
     { id: 'group-buying', label: 'Group Buying' },
-    { id: 'ledger', label: 'Purchases & Ledger' },
   ];
 
   const handleNav = (tab: NavTab) => {
@@ -187,6 +186,20 @@ export const Navbar: React.FC<NavbarProps> = ({
             <ShieldCheck className="w-4 h-4 text-brand-700" />
             Admin
           </button>
+          {currentRole === 'admin' && (
+            <button
+              type="button"
+              onClick={() => handleNav('ledger')}
+              className={`px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-1 ${
+                activeTab === 'ledger'
+                  ? 'bg-emerald-50 text-emerald-900 font-bold border border-emerald-300'
+                  : 'text-slate-600 hover:text-brand-800 hover:bg-slate-50'
+              }`}
+            >
+              <Wallet className="w-4 h-4 text-brand-700" />
+              Admin Ledger
+            </button>
+          )}
         </nav>
 
         {/* Right Action Icons & Profile Pill (Matches Figma Header) */}

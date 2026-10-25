@@ -20,6 +20,7 @@ import {
   INITIAL_DEALS,
   INITIAL_FRAUD_ALERTS,
 } from './data/mockData';
+import { ShieldCheck } from 'lucide-react';
 import { UserInvalidFallback } from './utils/webGuidance';
 import { Navbar } from './components/Navbar';
 import { HeroHomeView } from './components/HeroHomeView';
@@ -410,9 +411,41 @@ export function App() {
           />
         )}
 
-        {activeTab === 'ledger' && (
-          <PersonalLedgerView onBackToProfile={() => setActiveTab('profile')} />
-        )}
+        {activeTab === 'ledger' &&
+          (currentRole === 'admin' ? (
+            <PersonalLedgerView onBackToProfile={() => setActiveTab('admin')} />
+          ) : (
+            <div className="min-h-[60vh] flex items-center justify-center p-6">
+              <div className="max-w-md w-full bg-white rounded-3xl border border-slate-200 p-8 text-center shadow-sm space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center mx-auto">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <h2 className="text-xl font-extrabold text-slate-900">Admin Portal Restricted</h2>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  The Personal Purchases & Ledger expense tracker is private and restricted exclusively to system Administrators (Mohammad Rahman).
+                </p>
+                <div className="pt-2 flex items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCurrentRole('admin');
+                      setActiveTab('admin');
+                    }}
+                    className="px-4 py-2 rounded-xl bg-brand-800 text-white text-xs font-bold"
+                  >
+                    Switch to Admin Role
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('home')}
+                    className="px-4 py-2 rounded-xl border border-slate-200 text-slate-700 text-xs font-bold"
+                  >
+                    Return Home
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
 
         {activeTab === 'admin' && (
           <AdminDashboardView

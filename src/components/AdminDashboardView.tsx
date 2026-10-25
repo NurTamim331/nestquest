@@ -12,8 +12,10 @@ import {
   TrendingUp,
   UserCheck,
   Search,
+  Wallet,
 } from 'lucide-react';
 import { FraudAlert, Property } from '../types';
+import { PersonalLedgerView } from './PersonalLedgerView';
 
 interface AdminDashboardViewProps {
   properties: Property[];
@@ -32,6 +34,7 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
 }) => {
   const [adminTab, setAdminTab] = useState<
     | 'dashboard'
+    | 'purchases-ledger'
     | 'seller-posts'
     | 'fraud-reports'
     | 'admin-profile'
@@ -45,12 +48,13 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
   return (
     <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-6">
-        {/* Top Admin Navigation Bar (Matches Figma Page 31 Top Header) */}
+        {/* Top Admin Navigation Bar (Matches Figma Page 31 Top Header + Admin Ledger) */}
         <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-1.5">
             {(
               [
                 { id: 'dashboard', label: 'Dashboard' },
+                { id: 'purchases-ledger', label: 'Purchases & Ledger (Expense Tracker)' },
                 { id: 'seller-posts', label: `Seller Posts (${pendingProps.length} Pending)` },
                 {
                   id: 'fraud-reports',
@@ -222,6 +226,25 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
                       28
                     </span>
                   </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setAdminTab('purchases-ledger')}
+                    className="w-full text-left p-3.5 rounded-xl bg-emerald-50/70 hover:bg-emerald-100/70 border border-emerald-200 flex items-center justify-between transition"
+                  >
+                    <div>
+                      <p className="text-xs font-extrabold text-slate-900 flex items-center gap-1.5">
+                        <Wallet className="w-4 h-4 text-brand-800" />
+                        Admin Purchases & Personal Ledger
+                      </p>
+                      <p className="text-[11px] text-emerald-800">
+                        Track client payments & expenses with notes + manual receipts
+                      </p>
+                    </div>
+                    <span className="px-2.5 py-1 rounded-full bg-emerald-200 text-brand-950 text-xs font-extrabold">
+                      Tracker →
+                    </span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -361,6 +384,23 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
                 </div>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* TAB: ADMIN PERSONAL PURCHASES & EXPENSE LEDGER */}
+        {adminTab === 'purchases-ledger' && (
+          <div className="space-y-4">
+            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900 flex items-center justify-between">
+              <span>🔒 Admin Private Access: This Personal Purchases & Ledger tracker is restricted exclusively to Admin (Mohammad Rahman).</span>
+              <button
+                type="button"
+                onClick={() => setAdminTab('dashboard')}
+                className="text-amber-800 underline hover:text-amber-950"
+              >
+                ← Back to Dashboard
+              </button>
+            </div>
+            <PersonalLedgerView embedded={true} />
           </div>
         )}
 

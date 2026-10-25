@@ -211,7 +211,7 @@ export const PersonalLedgerView: React.FC<PersonalLedgerViewProps> = ({
         createdReceipt = {
           receiptNumber: `NQ-MR-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`,
           issuedAt: `${formDate} ${formTime}`,
-          issuedBy: 'Md Nur Uddin Tamim',
+          issuedBy: 'Mohammad Rahman (Admin)',
           partyName: formParty.trim(),
           amount: amountNum,
           amountInWords: numberToTakaWords(amountNum),
@@ -395,17 +395,17 @@ export const PersonalLedgerView: React.FC<PersonalLedgerViewProps> = ({
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="px-3 py-1 rounded-full bg-emerald-100 text-brand-900 text-xs font-bold inline-flex items-center gap-1.5">
                   <Wallet className="w-3.5 h-3.5 text-brand-700" />
-                  Personal Expense Tracker & Ledger
+                  Admin Personal Expense Tracker & Ledger
                 </span>
                 <span className="text-xs font-mono font-bold text-slate-400">
-                  Nur Uddin Tamim • Personal Finance
+                  Admin Mohammad Rahman • Private Ledger
                 </span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Purchases & Personal Ledger (খতিয়ান ও হিসাব)
+                Admin Purchases & Personal Ledger (খতিয়ান ও ব্যক্তিগত হিসাব)
               </h1>
               <p className="text-xs sm:text-sm text-slate-500 max-w-2xl">
-                Keep track of every payment: either someone paid you or you paid someone else, alongside your personal notes. 
+                Private Admin Tracker: Keep track of every payment: either someone paid you or you paid someone else, alongside your personal notes. 
                 Money receipts are made only when you manually generate them.
               </p>
             </div>
@@ -418,7 +418,7 @@ export const PersonalLedgerView: React.FC<PersonalLedgerViewProps> = ({
                   onClick={onBackToProfile}
                   className="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition"
                 >
-                  ← Back to Profile
+                  ← Back to Admin Dashboard
                 </button>
               )}
 
