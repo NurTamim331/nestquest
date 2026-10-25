@@ -74,3 +74,25 @@ dialog.nq-dialog::backdrop {
   font-family: 'Inter', system-ui, sans-serif !important;
   z-index: 10 !important;
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: white !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

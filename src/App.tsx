@@ -31,6 +31,7 @@ import { CreateSellPostView } from './components/CreateSellPostView';
 import { LawyersView } from './components/LawyersView';
 import { AdvisorsView } from './components/AdvisorsView';
 import { UserProfileView } from './components/UserProfileView';
+import { PersonalLedgerView } from './components/PersonalLedgerView';
 import { AdminDashboardView } from './components/AdminDashboardView';
 import { AuthView } from './components/AuthView';
 import { FooterAndModals } from './components/FooterAndTeamModal';
@@ -407,6 +408,10 @@ export function App() {
             }}
             onOpenTeamModal={() => setTeamModalOpen(true)}
           />
+        )}
+
+        {activeTab === 'ledger' && (
+          <PersonalLedgerView onBackToProfile={() => setActiveTab('profile')} />
         )}
 
         {activeTab === 'admin' && (

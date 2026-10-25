@@ -14,8 +14,10 @@ import {
   ShoppingBag,
   Sparkles,
   MapPin,
+  Wallet,
 } from 'lucide-react';
 import { NavTab, Property } from '../types';
+import { PersonalLedgerView } from './PersonalLedgerView';
 
 interface UserProfileViewProps {
   properties: Property[];
@@ -41,42 +43,6 @@ export const UserProfileView: React.FC<UserProfileViewProps> = ({
   const [profileSavedToast, setProfileSavedToast] = useState(false);
 
   const savedProperties = properties.filter((p) => wishlistIds.includes(p.id));
-
-  const transactions = [
-    {
-      id: 'tx-1',
-      title: 'Modern Apartment in Banani',
-      location: 'Banani, Dhaka',
-      image:
-        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=300&q=80',
-      type: 'Purchase',
-      price: '৳ 85 Lac',
-      date: 'Dec 15, 2025',
-      status: 'Completed',
-    },
-    {
-      id: 'tx-2',
-      title: 'Residential Plot in Uttara',
-      location: 'Uttara Sector 4, Dhaka',
-      image:
-        'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=300&q=80',
-      type: 'Sale',
-      price: '৳ 2.2 Cr',
-      date: 'Nov 28, 2025',
-      status: 'Completed',
-    },
-    {
-      id: 'tx-3',
-      title: 'Commercial Space in Gulshan',
-      location: 'Gulshan-2, Dhaka',
-      image:
-        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=300&q=80',
-      type: 'Purchase',
-      price: '৳ 3.5 Cr',
-      date: 'Nov 10, 2025',
-      status: 'Pending',
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -256,10 +222,30 @@ export const UserProfileView: React.FC<UserProfileViewProps> = ({
           </div>
         </div>
 
-        {/* QUICK ACTIONS SECTION (Exact Match to Figma Page 30) */}
+        {/* QUICK ACTIONS SECTION (Exact Match to Figma Page 30 + Ledger) */}
         <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
           <h2 className="text-base font-extrabold text-slate-900 mb-4">Quick Actions</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <button
+              type="button"
+              onClick={() => setActiveTab('ledger')}
+              className="text-left p-4 rounded-2xl border-2 border-brand-300 bg-brand-50/50 hover:bg-brand-50 hover:border-brand-600 transition group shadow-sm"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <Wallet className="w-5 h-5 text-brand-800" />
+                <span className="px-2 py-0.5 rounded-full bg-emerald-200 text-brand-900 text-[10px] font-black uppercase">
+                  Tracker
+                </span>
+              </div>
+              <h3 className="text-sm font-extrabold text-slate-900">Purchases & Ledger</h3>
+              <p className="text-xs text-slate-600 mt-1">
+                Track payments you paid or received with notes & money receipts
+              </p>
+              <span className="inline-block mt-3 text-xs font-bold text-brand-800 group-hover:underline">
+                Open Full Ledger →
+              </span>
+            </button>
+
             <button
               type="button"
               onClick={() => setActiveTab('group-buying')}
@@ -356,76 +342,8 @@ export const UserProfileView: React.FC<UserProfileViewProps> = ({
           </div>
         )}
 
-        {/* TRANSACTION HISTORY TABLE (Exact Match to Figma Page 30) */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-          <h2 className="text-base font-extrabold text-slate-900 mb-4">Transaction History</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse text-xs">
-              <thead>
-                <tr className="border-b border-slate-200 text-slate-400 uppercase text-[11px]">
-                  <th className="py-3 px-3">Property</th>
-                  <th className="py-3 px-3">Type</th>
-                  <th className="py-3 px-3">Price</th>
-                  <th className="py-3 px-3">Date</th>
-                  <th className="py-3 px-3">Status</th>
-                  <th className="py-3 px-3 text-right">Action</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {transactions.map((tx) => (
-                  <tr key={tx.id} className="hover:bg-slate-50">
-                    <td className="py-3.5 px-3">
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={tx.image}
-                          alt={tx.title}
-                          className="w-12 h-10 rounded-lg object-cover shrink-0"
-                        />
-                        <div>
-                          <p className="font-bold text-slate-900">{tx.title}</p>
-                          <p className="text-[11px] text-slate-500">{tx.location}</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-3.5 px-3">
-                      <span
-                        className={`px-2.5 py-0.5 rounded-full font-bold text-[11px] ${
-                          tx.type === 'Purchase'
-                            ? 'bg-blue-50 text-blue-700'
-                            : 'bg-purple-50 text-purple-700'
-                        }`}
-                      >
-                        {tx.type}
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-3 font-extrabold text-slate-900">{tx.price}</td>
-                    <td className="py-3.5 px-3 text-slate-500">{tx.date}</td>
-                    <td className="py-3.5 px-3">
-                      <span
-                        className={`px-2.5 py-0.5 rounded-full font-bold text-[11px] ${
-                          tx.status === 'Completed'
-                            ? 'bg-emerald-100 text-brand-800'
-                            : 'bg-amber-100 text-amber-800'
-                        }`}
-                      >
-                        ✓ {tx.status}
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-3 text-right">
-                      <button
-                        type="button"
-                        onClick={() => onSelectProperty(properties[0])}
-                        className="font-bold text-brand-700 hover:underline"
-                      >
-                        View Details
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        {/* PURCHASES & PERSONAL EXPENSE LEDGER (Embed) */}
+        <PersonalLedgerView embedded={true} />
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ import {
   Sparkles,
   LogIn,
   Layers,
+  Wallet,
 } from 'lucide-react';
 import { NavTab, UserRole } from '../types';
 
@@ -51,6 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'lawyers', label: 'Lawyers' },
     { id: 'advisors', label: 'Advisors' },
     { id: 'group-buying', label: 'Group Buying' },
+    { id: 'ledger', label: 'Purchases & Ledger' },
   ];
 
   const handleNav = (tab: NavTab) => {

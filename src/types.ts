@@ -10,6 +10,7 @@ export type NavTab =
   | 'advisors'
   | 'group-buying'
   | 'profile'
+  | 'ledger'
   | 'admin'
   | 'auth';
 
@@ -247,4 +248,32 @@ export interface TeamMemberCredit {
   role: string;
   contribution: string;
   isLeadDeveloper?: boolean;
+}
+
+export type LedgerEntryType = 'income' | 'expense';
+
+export interface MoneyReceipt {
+  receiptNumber: string;
+  issuedAt: string;
+  issuedBy: string;
+  partyName: string;
+  amount: number;
+  amountInWords: string;
+  paymentMethod: string;
+  purpose: string;
+  remarks?: string;
+}
+
+export interface LedgerEntry {
+  id: string;
+  type: LedgerEntryType; // 'income' = someone paid me, 'expense' = I paid someone else
+  partyName: string; // e.g., 'Client X'
+  amount: number; // in BDT
+  note: string; // The user's note about the payment
+  category: string; // 'Client Fee' | 'Property Token' | 'Legal/Advisory' | 'Construction' | 'Personal' | 'Other'
+  paymentMethod: 'Bank Transfer' | 'Cash' | 'bKash/Nagad' | 'Cheque' | 'Other';
+  date: string; // YYYY-MM-DD
+  time?: string;
+  receipt?: MoneyReceipt | null; // null if not manually created yet
+  createdAt: number;
 }
